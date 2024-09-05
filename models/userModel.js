@@ -1,0 +1,26 @@
+let users = [
+  { id: 1, name: "John", age: 25, connections: [2, 3] },
+  { id: 2, name: "Jane", age: 30, connections: [1, 4, 5] },
+  { id: 3, name: "Bob", age: 35, connections: [1, 6, 7] },
+  { id: 4, name: "Lisa", age: 35, connections: [2, 8, 9] },
+  { id: 5, name: "Mike", age: 35, connections: [2, 10, 11] },
+  { id: 6, name: "Chambas", age: 35, connections: [3, 12, 13] },
+  { id: 7, name: "Laary", age: 35, connections: [3, 14, 15] },
+  { id: 8, name: "Aya", age: 35, connections: [4, 16, 17] },
+  { id: 9, name: "Ruben", age: 35, connections: [4, 18, 19] },
+  { id: 10, name: "Jake", age: 35, connections: [5, 20, 21] },
+  { id: 11, name: "Tommy", age: 35, connections: [5, 22, 6] },
+  { id: 12, name: "Hamid", age: 35, connections: [6, 7, 1] },
+  { id: 13, name: "Husna", age: 35, connections: [6, 11, 10] },
+  { id: 14, name: "Alice", age: 40, connections: [7, 1, 9] },
+  { id: 15, name: "Mike", age: 45, connections: [7, 2, 10] },
+  { id: 16, name: "Emma", age: 50, connections: [8, 3, 4] },
+  { id: 17, name: "Tom", age: 55, connections: [8, 5, 6] },
+  { id: 18, name: "Lily", age: 60, connections: [9, 7, 8] },
+  { id: 19, name: "Sam", age: 65, connections: [9, 8, 4] },
+  { id: 20, name: "Hannah", age: 70, connections: [10, 5, 3] },
+  { id: 21, name: "Oliver", age: 75, connections: [10, 6, 2] },
+  { id: 22, name: "Ava", age: 80, connections: [11, 9, 4] },
+];
+
+module.exports = users;
