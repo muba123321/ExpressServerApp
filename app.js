@@ -12,6 +12,11 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // create routes
+app.get('/',
+    (req, res) => {
+        res.send('Welcome to the Home Page')
+        }
+)
 app.use("/users", userRoutes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
