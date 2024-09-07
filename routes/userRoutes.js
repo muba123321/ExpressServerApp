@@ -2,16 +2,16 @@ const express = require("express");
 const router = express.Router();
 let users = require("../models/userModel");
 
-// Geting all user data using this url http://localhost:3000/users
+// Getting all user data using this url http://localhost:3000/users
 router
   .route("/")
   .get((req, res) => {
     res.json(users);
   })
   .post((req, res) => {
-    const { name, connections = [] } = req.body;
+    const { name, age, connections = [] } = req.body;
     const id = users.length + 1;
-    const newUser = new users({ id, name, connections });
+    const newUser = { id, name, age, connections };
     users.push(newUser);
     res.status(201).json(newUser);
   });
