@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const userRoutes = require("./routes/userRoutes")
+const activityRoutes = require("./routes/activitiesRoutes");
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.get('/',
         }
 )
 app.use("/users", userRoutes);
+app.use("/activities", activityRoutes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
