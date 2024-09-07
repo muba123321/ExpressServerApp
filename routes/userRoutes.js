@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 let users = require("../models/userModel");
+let error = require("../utils/error");
 
 // Getting all user data using this url http://localhost:3000/users
 router
@@ -18,9 +19,10 @@ router
 
 router
   .route("/:id")
-  .patch((req, res) => {
+  .patch((req, res, next) => {
     const user = users.find((u) => u.id === parseInt(req.params.id));
-    if (!user) return res.status(404).send("User not found");
+    if (!user) return next(error(404, "User not found"));
+   
 
     Object.keys(req.body).forEach((key) => {
       if (key === "connections") {
@@ -36,7 +38,7 @@ router
   .delete((req, res) => {
     const userId = parseInt(req.params.id);
     const userIndex = users.findIndex((u) => u.id === userId);
-    if (userIndex === -1) return res.status(404).send("User not found");
+    if (userIndex === -1) return  next(error(404, "User not found"));;
     users.splice(userIndex, 1);
 
     users.forEach((user) => {
@@ -44,9 +46,9 @@ router
         (connectionId) => connectionId !== userId
       );
     });
-    res.status(200).send(
-        `User with id ${userId} and their connections has been deleted`
-    )
+    res
+      .status(200)
+      .send(`User with id ${userId} and their connections has been deleted`);
   });
 
 module.exports = router;

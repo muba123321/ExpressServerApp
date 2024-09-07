@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 let activities = require("../models/activityModel");
 let users = require("../models/userModel");
+let error = require("../utils/error");
 
 router
   .route("/")
-  .get((req, res) => {
+  .get((req, res, next) => {
     const userId = parseInt(req.query.user);
 
     if (userId) {
@@ -13,7 +14,7 @@ router
 
       const user = users.find((u) => u.id === userId);
 
-      if (!user) return res.status(404).send("User not found");
+      if (!user) return next(error(404, "User not found"));;
 
       const visibleActivities = activities.filter(
         (activity) =>
@@ -59,7 +60,7 @@ router
 
     const activityId = parseInt(req.params.id);
     const activity = activities.find((a) => a.id === activityId);
-    if (!activity) return res.status(404).send("Activity not found");
+    if (!activity) return next(error(404, "Acitivity not found"));;
     Object.keys(req.body).forEach((key) => {
       console.log(`${key}: ${activity[key]}`);
       if (key === "participants") {
@@ -79,7 +80,7 @@ router
       const activityId = parseInt(req.params.id);
       const activityIndex = activities.findIndex((a) => a.id === activityId);
       if (activityIndex === -1)
-        return res.status(404).send("Activity not found");
+        return next(error(404, "Activity not found"));
       activities.splice(activityIndex, 1);
       res.status(200).send(`Activity with id ${req.params.id} deleted`);
     }
