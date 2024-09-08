@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activities</title>
-</head>
-<body>
-    <h1>Available Activities</h1>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>Available Activities</header>
     <ul>
-        <% activities.forEach(activity => { %>
-            <li>
-              <h3><%= activity.name %></h3>
-              <p><%= activity.description %></p>
-              <p><%= activity.date %></p>
-              <p>Privacy: <%= activity.privacy %></p>
-              <p>Participants: <%= activity.participants.length %></p>
-            </li>
-          <% }) %>
+      <% activities.forEach(activity => { %>
+      <li>
+        <h3><%= activity.name %></h3>
+        <p><%= activity.description %></p>
+        <p><%= activity.date %></p>
+        <p>Privacy: <%= activity.privacy %></p>
+        <p>Participants: <%= activity.participants.length %></p>
+      </li>
+      <% }) %>
     </ul>
     <a href="/activities/new">Create New Activity</a>
-</body>
+  </body>
 </html>

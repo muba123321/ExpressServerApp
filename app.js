@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Logging Request data middleware
 app.use(morgan("dev"));
 
+// static files (for CSS and if possible images, etc.)
+app.use(express.static("public"));
+
 // setting up Ejs as the view engine
 app.set("view engine", "ejs");
 
