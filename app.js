@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 const userRoutes = require("./routes/userRoutes");
 const activityRoutes = require("./routes/activitiesRoutes");
+const homepageRoutes = require("./routes/homepageRoutes");
 const morgan = require("morgan");
 
 const app = express();
@@ -16,10 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Logging Request data middleware
 app.use(morgan("dev"));
 
-// create routes
-app.get("/", (req, res) => {
-  res.send("Welcome to the Home Page");
-});
+// setting up Ejs as the view engine
+app.set("view engine", "ejs");
+
+// create route
+app.use("/", homepageRoutes);
 app.use("/users", userRoutes);
 app.use("/activities", activityRoutes);
 
