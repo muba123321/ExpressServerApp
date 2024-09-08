@@ -9,6 +9,7 @@ router
   .get((req, res) => {
     res.json(users);
   })
+  //Creating a new user. ID is generically created no need to pass in ID, only name, age and connections which can be an empty array use Insomnia or Postman or other API test platform 
   .post((req, res) => {
     const { name, age, connections = [] } = req.body;
     const id = users.length + 1;
@@ -17,12 +18,22 @@ router
     res.status(201).json(newUser);
   });
 
+  // Getting only 1 user data using this url http://localhost:3000/users/THE-USERID
 router
   .route("/:id")
+  .get((req, res, next) => {
+    const userId = parseInt(req.params.id);
+    const user = users.find((user) => user.id === userId);
+    if (!user) {
+      return next(error(404, "User not found"));
+
+    }
+    res.json(user);
+  })
+  // Update user
   .patch((req, res, next) => {
     const user = users.find((u) => u.id === parseInt(req.params.id));
     if (!user) return next(error(404, "User not found"));
-   
 
     Object.keys(req.body).forEach((key) => {
       if (key === "connections") {
@@ -35,10 +46,11 @@ router
     });
     res.json(user);
   })
+  // Delete user
   .delete((req, res) => {
     const userId = parseInt(req.params.id);
     const userIndex = users.findIndex((u) => u.id === userId);
-    if (userIndex === -1) return  next(error(404, "User not found"));;
+    if (userIndex === -1) return next(error(404, "User not found"));
     users.splice(userIndex, 1);
 
     users.forEach((user) => {
