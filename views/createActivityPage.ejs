@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Activity</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include("components/headers", { activePage: 'createActivity' }) %>
+    <h1>Create a New Activity</h1>
+    <form action="/activities" method="POST">
+      <div class="formGroup">
+        <label for="name">Activity Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Activity Name"
+          required
+        />
+      </div>
+      <div class="formGroup">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          placeholder="Description"
+          required
+        ></textarea>
+      </div>
+      <div class="formGroup">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date" required />
+      </div>
+      <div class="formGroup">
+        <label for="privacy">Privacy</label>
+        <select name="privacy" id="privacy" class="custom-select"> 
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+      </div>
+      <div class="formGroup">
+        <label for="participants">Select Participants</label>
+        <select
+          name="participants"
+          id="participants"
+          class="custom-multi-select"
+          multiple
+        >
+          <% users.forEach(user => { %>
+          <option value="<%= user.id %>"><%= user.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit">Create Activity</button>
+    </form>
+  </body>
+</html>

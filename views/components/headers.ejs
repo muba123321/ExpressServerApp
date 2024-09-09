@@ -1,0 +1,30 @@
+<header>
+  <nav class="navbar">
+    <ul class="navList">
+      <li class="navItem">
+        <a href="/" class="<%= activePage === 'home' ? 'active' : '' %>"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="/activities/create"
+          class="<%= activePage === 'createActivity' ? 'active' : '' %>"
+          >Create Activity</a
+        >
+      </li>
+      <li>
+        <a
+          href="/activities"
+          class="<%= activePage === 'activities' ? 'active' : '' %>"
+          >All Activities</a
+        >
+      </li>
+      <li>
+        <a href="/users" class="<%= activePage === 'users' ? 'active' : '' %>"
+          >Users</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
